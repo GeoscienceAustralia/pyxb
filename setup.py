@@ -20,6 +20,7 @@ import datetime
 import logging
 
 from distutils.core import setup, Command
+from subprocess import check_call
 
 # Stupid little command to automatically update the version number
 # where it needs to be updated.
@@ -170,6 +171,8 @@ class test (Command):
 import glob
 import sys
 import pyxb.utils.utility
+
+check_call([ './maintainer/genbundles common opengis' ], shell=True, env=dict(os.environ, **{'PYXB_ROOT': '.'}))
 
 packages = [
         'pyxb', 'pyxb.namespace', 'pyxb.binding', 'pyxb.utils', 'pyxb.xmlschema',
